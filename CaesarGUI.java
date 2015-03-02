@@ -40,7 +40,7 @@ public class CaesarGUI extends JFrame implements ActionListener {
         public void encryptText() throws InterruptedException {
                 //Create a HashMap
                 //A hash map takes keys and values, which are both Characters in this case.
-                HashMap<Character, Character> alphaMap = new HashMap<Character, Character>();
+                HashMap<Character, String> alphaMap = new HashMap<Character, String>();
                 int shift;
                 //Get the text from the app and store it in a String variable.
                 String textNum = this.shiftFactor.getText();
@@ -54,15 +54,19 @@ public class CaesarGUI extends JFrame implements ActionListener {
                         shift = 0;
                 }
                 //Map every letter of the alphabet to another letter in the alphabet, shifted by x places.
+				
                 for(int i=0; i<alphabet.length(); i++){
-                        alphaMap.put(alphabet.charAt(i), alphabet.charAt((i+shift)%26));
+						String shiftString = "";
+						shiftString.concat(alphabet.charAt((i+shift)%26));
+						shiftString.concat(alphabet.charAt((i+shift+1))%26);
+                        alphaMap.put(alphabet.charAt(i), shiftString);
                 }
                 //Get input text and put it all to lower-case so it's easy to convert
                 String inputText = inputTA.getText().toLowerCase();
                 String outputText = "";
                 //Go to each letter and switch it with it's shifted counterpart
                 for(int j=0; j<inputText.length(); j++){
-                        outputText = outputText.concat(alphaMap.get(inputText.charAt(j)).toString());
+                        outputText = outputText + alphaMap.get(inputText.charAt(j));
                 }
                 //Output the encrypted text
                 outputTA.setText(outputText);
