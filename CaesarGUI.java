@@ -57,8 +57,8 @@ public class CaesarGUI extends JFrame implements ActionListener {
 				
                 for(int i=0; i<alphabet.length(); i++){
 						String shiftString = "";
-						shiftString.concat(alphabet.charAt((i+shift)%26));
-						shiftString.concat(alphabet.charAt((i+shift+1))%26);
+						shiftString += alphabet.charAt((i+shift)%26);
+						shiftString += alphabet.charAt(((i+shift+1)%26));
                         alphaMap.put(alphabet.charAt(i), shiftString);
                 }
                 //Get input text and put it all to lower-case so it's easy to convert
@@ -105,15 +105,15 @@ public class CaesarGUI extends JFrame implements ActionListener {
             inputTA = new JTextArea("Insert the text to be encrypted/decrypted here, then press the appropriate button.", 12, 40);
             inputTA.setLineWrap(true);
             inputTA.setWrapStyleWord(true);
-            inputTA.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+            inputTA.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
             JScrollPane scroller = new JScrollPane(inputTA);
             scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             content.add(scroller);
            
-            outputTA = new JTextArea("Output text.",12, 40);
+            outputTA = new JTextArea("Output text.",24, 80);
             outputTA.setLineWrap(true);
             outputTA.setWrapStyleWord(true);
-            outputTA.setBorder(BorderFactory.createEmptyBorder(4, 4, 4, 4));
+            outputTA.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
             JScrollPane scroller2 = new JScrollPane(outputTA);
             scroller2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
             content.add(scroller2);
@@ -127,7 +127,7 @@ public class CaesarGUI extends JFrame implements ActionListener {
             box1.add(decryptButton);
             box1.add(encryptButton);
             box1.add(new JLabel("Shift Factor"));
-            box1.add(this.shiftFactor = new JTextField(20));
+            box1.add(this.shiftFactor = new JTextField(40));
             content.add(box1);
            
             pack();
